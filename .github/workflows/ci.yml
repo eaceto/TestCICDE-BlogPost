@@ -1,0 +1,21 @@
+name: CI on Custom macOS Runner
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: [self-hosted, macOS]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and Test
+      run: |
+        swift build
+        swift test
